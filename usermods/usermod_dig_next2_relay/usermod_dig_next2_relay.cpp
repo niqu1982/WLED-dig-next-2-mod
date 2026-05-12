@@ -1,31 +1,40 @@
 /*
- * ============================================================
+* ============================================================
  *  WLED Usermod: QuinLED Dig-Next-2 — Multi-Relay + Buttons
- *  HA-safe version: segment state independent from main on/off
+ *  Home Assistant safe version: segment state is independent
+ *  from global main on/off
  * ============================================================
  *
- *  Sprzęt:
+ *  Hardware:
  *    QuinLED Dig-Next-2
  *
- *  Kanały:
+ *  Channels:
  *    CH1 = GPIO20 + GPIO22
  *    CH2 = GPIO21
  *    MASTER = GPIO5
  *
- *  Przyciski:
+ *  Buttons:
  *    Button 1 = GPIO34
  *    Button 2 = GPIO35
  *
- *  Założenia:
- *    - CH1 odpowiada busowi 0 / segmentowi 0
- *    - CH2 odpowiada busowi 1 / segmentowi 1
- *    - MASTER = ON gdy CH1 lub CH2 jest aktywny
- *    - aktywność liczona z segmentów, nie z globalnego main on/off
+ *  Assumptions:
+ *    - CH1 maps to bus 0 / segment 0
+ *    - CH2 maps to bus 1 / segment 1
+ *    - MASTER = ON when CH1 or CH2 is active
+ *    - activity is determined from segment state,
+ *      not from the global main on/off state
  *
- *  Ważne:
- *    W WLED muszą istnieć 2 segmenty logiczne:
+ *  Important:
+ *    Two logical segments must exist in WLED:
+ *   EX:
  *      Segment 0: start=0   stop=100
  *      Segment 1: start=100 stop=200
+ *
+ *  Purpose:
+ *    This usermod provides independent control of two relay
+ *    channels and one master relay, working together with
+ *    WLED segments, physical buttons, and Home Assistant.
+ * ============================================================
  * ============================================================
  */
 
